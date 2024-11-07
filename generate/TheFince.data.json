@@ -1012,4 +1012,1297 @@
     }
   },
   "timestamp": "2024. 11. 6. 오후 6:18:36"
+},
+{
+  "_id": "2024-11-07",
+  "market_data": {
+    "indices": [
+      {
+        "name": "S&P 500",
+        "current_price": 5929.04,
+        "change_amount": 146.28,
+        "change_percent": 2.53,
+        "date": "2024-11-07T04:30:15.555Z",
+        "status": "success"
+      },
+      {
+        "name": "DJI",
+        "current_price": 43729.93,
+        "change_amount": 1508.05,
+        "change_percent": 3.57,
+        "date": "2024-11-07T04:30:15.872Z",
+        "status": "success"
+      },
+      {
+        "name": "NDX",
+        "current_price": 20781.33,
+        "change_amount": 553.87,
+        "change_percent": 2.74,
+        "date": "2024-11-07T04:30:16.225Z",
+        "status": "success"
+      },
+      {
+        "name": "RUT",
+        "current_price": 2394.55,
+        "change_amount": 133.71,
+        "change_percent": 5.91,
+        "date": "2024-11-07T04:30:15.266Z",
+        "status": "success"
+      },
+      {
+        "name": "SOX",
+        "current_price": 5215.6,
+        "change_amount": 157.8,
+        "change_percent": 3.12,
+        "date": "2024-11-07T04:30:15.721Z",
+        "status": "success"
+      },
+      {
+        "name": "DXY",
+        "current_price": 104.96,
+        "change_amount": -0.13,
+        "change_percent": -0.12,
+        "date": "2024-11-07T04:30:15.454Z",
+        "status": "success"
+      },
+      {
+        "name": "SSEC",
+        "current_price": 3413.47,
+        "change_amount": 29.67,
+        "change_percent": 0.88,
+        "date": "2024-11-07T04:30:15.814Z",
+        "status": "success"
+      },
+      {
+        "name": "HK40",
+        "current_price": 20748,
+        "change_amount": 209.62,
+        "change_percent": 1.02,
+        "date": "2024-11-07T04:30:15.393Z",
+        "status": "success"
+      },
+      {
+        "name": "N225",
+        "current_price": 39299.5,
+        "change_amount": -129,
+        "change_percent": -0.33,
+        "date": "2024-11-07T04:30:15.980Z",
+        "status": "success"
+      },
+      {
+        "name": "KOSPI",
+        "current_price": 2570.43,
+        "change_amount": 6.92,
+        "change_percent": 0.27,
+        "date": "2024-11-07T04:30:15.764Z",
+        "status": "success"
+      },
+      {
+        "name": "MSCITW",
+        "current_price": 978.65,
+        "change_amount": 9.12,
+        "change_percent": 0.94,
+        "date": "2024-11-07T04:30:16.353Z",
+        "status": "success"
+      },
+      {
+        "name": "EU50",
+        "current_price": 4798.85,
+        "change_amount": -71.48,
+        "change_percent": -1.47,
+        "date": "2024-11-07T04:30:16.039Z",
+        "status": "success"
+      },
+      {
+        "name": "UK100",
+        "current_price": 8166.68,
+        "change_amount": -5.71,
+        "change_percent": -0.07,
+        "date": "2024-11-07T04:30:15.344Z",
+        "status": "success"
+      },
+      {
+        "name": "DAX",
+        "current_price": 19039.31,
+        "change_amount": -216.96,
+        "change_percent": -1.13,
+        "date": "2024-11-07T04:30:15.930Z",
+        "status": "success"
+      },
+      {
+        "name": "FRA40",
+        "current_price": 7369.61,
+        "change_amount": -37.54,
+        "change_percent": -0.51,
+        "date": "2024-11-07T04:30:16.445Z",
+        "status": "success"
+      },
+      {
+        "name": "NQ100",
+        "current_price": 20914.25,
+        "change_amount": 20.25,
+        "change_percent": 0.1,
+        "date": "2024-11-07T04:30:16.131Z",
+        "status": "success"
+      },
+      {
+        "name": "HSI",
+        "current_price": 20798,
+        "change_amount": 283.5,
+        "change_percent": 1.38,
+        "date": "2024-11-07T04:30:15.503Z",
+        "status": "success"
+      },
+      {
+        "name": "KOR200",
+        "current_price": 355.85,
+        "change_amount": -2.65,
+        "change_percent": -0.74,
+        "date": "2024-11-07T04:30:16.505Z",
+        "status": "success"
+      }
+    ],
+    "commodities": [
+      {
+        "name": "Gold",
+        "current_price": 2664.35,
+        "change_amount": -11.95,
+        "change_percent": -0.45,
+        "date": "2024-11-07T04:30:15.597Z"
+      },
+      {
+        "name": "Silver",
+        "current_price": 31.108,
+        "change_amount": -0.223,
+        "change_percent": -0.71,
+        "date": "2024-11-07T04:30:15.669Z"
+      },
+      {
+        "name": "Copper",
+        "current_price": 4.3022,
+        "change_amount": 0.0635,
+        "change_percent": 1.5,
+        "date": "2024-11-07T04:30:16.311Z"
+      },
+      {
+        "name": "WTI",
+        "current_price": 72.11,
+        "change_amount": 0.42,
+        "change_percent": 0.59,
+        "date": "2024-11-07T04:30:16.396Z"
+      },
+      {
+        "name": "Brent",
+        "current_price": 75.45,
+        "change_amount": 0.53,
+        "change_percent": 0.71,
+        "date": "2024-11-07T04:30:16.174Z"
+      },
+      {
+        "name": "NG",
+        "current_price": 2.729,
+        "change_amount": 0.013,
+        "change_percent": 0.48,
+        "date": "2024-11-07T04:30:16.269Z"
+      }
+    ],
+    "exchange_rates": [
+      {
+        "name": "USD/KRW",
+        "current_price": 1403.37,
+        "change_amount": 23.44,
+        "change_percent": 1.7,
+        "date": "2024-11-06"
+      },
+      {
+        "name": "USD/EUR",
+        "current_price": 0.935,
+        "change_amount": 0.0173,
+        "change_percent": 1.89,
+        "date": "2024-11-06"
+      },
+      {
+        "name": "USD/CNY",
+        "current_price": 7.179,
+        "change_amount": 0.0757,
+        "change_percent": 1.07,
+        "date": "2024-11-06"
+      },
+      {
+        "name": "USD/JPY",
+        "current_price": 154.32,
+        "change_amount": 2.05,
+        "change_percent": 1.35,
+        "date": "2024-11-06"
+      },
+      {
+        "name": "USD/GBP",
+        "current_price": 0.7782,
+        "change_amount": 0.008,
+        "change_percent": 1.04,
+        "date": "2024-11-06"
+      },
+      {
+        "name": "EUR/KRW",
+        "current_price": 1500.8984,
+        "change_amount": -2.8175,
+        "change_percent": -0.19,
+        "date": "2024-11-06"
+      },
+      {
+        "name": "CNY/KRW",
+        "current_price": 195.4827,
+        "change_amount": 1.2166,
+        "change_percent": 0.63,
+        "date": "2024-11-06"
+      },
+      {
+        "name": "JPY/KRW",
+        "current_price": 9.0939,
+        "change_amount": 0.0315,
+        "change_percent": 0.35,
+        "date": "2024-11-06"
+      },
+      {
+        "name": "GBP/KRW",
+        "current_price": 1803.4698,
+        "change_amount": 11.6321,
+        "change_percent": 0.65,
+        "date": "2024-11-06"
+      }
+    ],
+    "treasury_yields": [
+      {
+        "name": "2-Year Treasury Yield",
+        "current_price": 4.27,
+        "change_amount": 0.08,
+        "change_percent": 1.91,
+        "date": "2024-11-06T04:30:25.486Z"
+      },
+      {
+        "name": "10-Year Treasury Yield",
+        "current_price": 4.42,
+        "change_amount": 0.16,
+        "change_percent": 3.76,
+        "date": "2024-11-06T04:30:25.486Z"
+      },
+      {
+        "name": "30-Year Treasury Yield",
+        "current_price": 4.6,
+        "change_amount": 0.16,
+        "change_percent": 3.6,
+        "date": "2024-11-06T04:30:25.486Z"
+      }
+    ],
+    "cryptocurrency": [
+      {
+        "name": "BTC",
+        "current_price": 74859.53,
+        "change_amount": 598.46,
+        "change_percent": 0.81,
+        "date": "2024-11-07T04:30:14.922Z"
+      },
+      {
+        "name": "ETH",
+        "current_price": 2843.99,
+        "change_amount": 260.69,
+        "change_percent": 10.09,
+        "date": "2024-11-07T04:30:14.922Z"
+      },
+      {
+        "name": "SOL",
+        "current_price": 189.86,
+        "change_amount": 4.76,
+        "change_percent": 2.57,
+        "date": "2024-11-07T04:30:14.922Z"
+      },
+      {
+        "name": "XRP",
+        "current_price": 0.5609,
+        "change_amount": 0.03,
+        "change_percent": 4.74,
+        "date": "2024-11-07T04:30:14.922Z"
+      },
+      {
+        "name": "TRX",
+        "current_price": 0.1624,
+        "change_amount": {
+          "$numberDouble": "-0.0"
+        },
+        "change_percent": -0.06,
+        "date": "2024-11-07T04:30:14.922Z"
+      }
+    ],
+    "economic_calendar": {
+      "2024-11-07": {
+        "United States": [
+          {
+            "date": "2024-11-07 00:30:00.000",
+            "event": "EIA 원유 재고 변동 (11월 01일)",
+            "time": " 00:30",
+            "actual": "2.149M",
+            "forecast": "1.8M",
+            "previous": "-0.515M",
+            "importance": 2,
+            "country": "United States"
+          },
+          {
+            "date": "2024-11-07 00:30:00.000",
+            "event": "EIA 가솔린 재고 변동 (11월 01일)",
+            "time": " 00:30",
+            "actual": "0.412M",
+            "forecast": "-1.2M",
+            "previous": "-2.707M",
+            "importance": 2,
+            "country": "United States"
+          },
+          {
+            "date": "2024-11-07 00:30:00.000",
+            "event": "EIA 난방유 재고 변동 (11월 01일)",
+            "time": " 00:30",
+            "actual": "0.335M",
+            "forecast": "",
+            "previous": "0.571M",
+            "importance": 1,
+            "country": "United States"
+          },
+          {
+            "date": "2024-11-07 00:30:00.000",
+            "event": "EIA 증류유 생산량 변동 (11월 01일)",
+            "time": " 00:30",
+            "actual": "0.233M",
+            "forecast": "",
+            "previous": "-0.148M",
+            "importance": 1,
+            "country": "United States"
+          },
+          {
+            "date": "2024-11-07 00:30:00.000",
+            "event": "EIA 가솔린 생산량 변동 (11월 01일)",
+            "time": " 00:30",
+            "actual": "0.013M",
+            "forecast": "",
+            "previous": "-0.259M",
+            "importance": 1,
+            "country": "United States"
+          },
+          {
+            "date": "2024-11-07 00:30:00.000",
+            "event": "EIA 원유 수입량 변동 (11월 01일)",
+            "time": " 00:30",
+            "actual": "1.676M",
+            "forecast": "",
+            "previous": "-0.605M",
+            "importance": 1,
+            "country": "United States"
+          },
+          {
+            "date": "2024-11-07 00:30:00.000",
+            "event": "EIA 쿠싱 원유 재고량 변동 (11월 01일)",
+            "time": " 00:30",
+            "actual": "0.522M",
+            "forecast": "",
+            "previous": "0.681M",
+            "importance": 1,
+            "country": "United States"
+          },
+          {
+            "date": "2024-11-07 00:30:00.000",
+            "event": "EIA 정제소 원유 가동량 변동 (11월 01일)",
+            "time": " 00:30",
+            "actual": "0.281M",
+            "forecast": "",
+            "previous": "-0.031M",
+            "importance": 1,
+            "country": "United States"
+          },
+          {
+            "date": "2024-11-07 00:30:00.000",
+            "event": "EIA 증류유 재고 변동 (11월 01일)",
+            "time": " 00:30",
+            "actual": "2.947M",
+            "forecast": "-1M",
+            "previous": "-0.977M",
+            "importance": 1,
+            "country": "United States"
+          },
+          {
+            "date": "2024-11-07 01:30:00.000",
+            "event": "17주 만기 국채 입찰 ",
+            "time": " 01:30",
+            "actual": "4.410%",
+            "forecast": "",
+            "previous": "4.430%",
+            "importance": 1,
+            "country": "United States"
+          },
+          {
+            "date": "2024-11-07 03:00:00.000",
+            "event": "30년물 채권 입찰 ",
+            "time": " 03:00",
+            "actual": "4.608%",
+            "forecast": "",
+            "previous": "4.389%",
+            "importance": 2,
+            "country": "United States"
+          },
+          {
+            "date": "2024-11-07 22:30:00.000",
+            "event": "신규 실업수당 신청건수 (11월 02일)",
+            "time": " 22:30",
+            "actual": "",
+            "forecast": "221K",
+            "previous": "216K",
+            "importance": 2,
+            "country": "United States"
+          },
+          {
+            "date": "2024-11-07 22:30:00.000",
+            "event": "계속 실업수당 청구건수 (10월 26일)",
+            "time": " 22:30",
+            "actual": "",
+            "forecast": "1880K",
+            "previous": "1862K",
+            "importance": 1,
+            "country": "United States"
+          },
+          {
+            "date": "2024-11-07 22:30:00.000",
+            "event": "단위노동비용 잠정치 (전분기비) Q3",
+            "time": " 22:30",
+            "actual": "",
+            "forecast": "1%",
+            "previous": "0.4%",
+            "importance": 2,
+            "country": "United States"
+          },
+          {
+            "date": "2024-11-07 22:30:00.000",
+            "event": "비농업 생산성 잠정치 (전분기비) Q3",
+            "time": " 22:30",
+            "actual": "",
+            "forecast": "2.3%",
+            "previous": "2.5%",
+            "importance": 2,
+            "country": "United States"
+          },
+          {
+            "date": "2024-11-07 22:30:00.000",
+            "event": "실업수당 청구건수 4주 평균 (11월 02일)",
+            "time": " 22:30",
+            "actual": "",
+            "forecast": "",
+            "previous": "236.5K",
+            "importance": 1,
+            "country": "United States"
+          },
+          {
+            "date": "2024-11-07 23:00:00.000",
+            "event": "중고차 가격 (전월비) (10월)",
+            "time": " 23:00",
+            "actual": "",
+            "forecast": "",
+            "previous": "-0.5%",
+            "importance": 1,
+            "country": "United States"
+          },
+          {
+            "date": "2024-11-07 23:00:00.000",
+            "event": "중고차 가격 (전년비) (10월)",
+            "time": " 23:00",
+            "actual": "",
+            "forecast": "",
+            "previous": "-5.3%",
+            "importance": 1,
+            "country": "United States"
+          }
+        ],
+        "Euro Area": [
+          {
+            "date": "2024-11-07 17:10:00.000",
+            "event": "ECB Schnabel 연설 ",
+            "time": " 17:10",
+            "actual": "",
+            "forecast": "",
+            "previous": "",
+            "importance": 1,
+            "country": "Euro Area"
+          },
+          {
+            "date": "2024-11-07 17:30:00.000",
+            "event": "HCOB 건설업 구매관리자지수(PMI) (10월)",
+            "time": " 17:30",
+            "actual": "",
+            "forecast": "",
+            "previous": "42.1",
+            "importance": 1,
+            "country": "Euro Area"
+          },
+          {
+            "date": "2024-11-07 19:00:00.000",
+            "event": "연간 소매 판매 (9월)",
+            "time": " 19:00",
+            "actual": "",
+            "forecast": "1.3%",
+            "previous": "0.8%",
+            "importance": 1,
+            "country": "Euro Area"
+          },
+          {
+            "date": "2024-11-07 19:00:00.000",
+            "event": "소매 판매 (전월비) (9월)",
+            "time": " 19:00",
+            "actual": "",
+            "forecast": "0.4%",
+            "previous": "0.2%",
+            "importance": 2,
+            "country": "Euro Area"
+          },
+          {
+            "date": "2024-11-07 19:45:00.000",
+            "event": "ECB 엘더슨 연설 ",
+            "time": " 19:45",
+            "actual": "",
+            "forecast": "",
+            "previous": "",
+            "importance": 1,
+            "country": "Euro Area"
+          },
+          {
+            "date": "2024-11-07 22:30:00.000",
+            "event": "ECB 레인 스피치 ",
+            "time": " 22:30",
+            "actual": "",
+            "forecast": "",
+            "previous": "",
+            "importance": 1,
+            "country": "Euro Area"
+          }
+        ],
+        "United Kingdom": [
+          {
+            "date": "2024-11-07 16:00:00.000",
+            "event": "Halifax 주택가격지수(전월비) (10월)",
+            "time": " 16:00",
+            "actual": "",
+            "forecast": "0.2%",
+            "previous": "0.3%",
+            "importance": 2,
+            "country": "United Kingdom"
+          },
+          {
+            "date": "2024-11-07 16:00:00.000",
+            "event": "Halifax 주택가격지수(전년비) (10월)",
+            "time": " 16:00",
+            "actual": "",
+            "forecast": "4.2%",
+            "previous": "4.7%",
+            "importance": 2,
+            "country": "United Kingdom"
+          },
+          {
+            "date": "2024-11-07 18:30:00.000",
+            "event": "노동 생산성 최종(전분기비) Q2",
+            "time": " 18:30",
+            "actual": "",
+            "forecast": "",
+            "previous": "-0.2%",
+            "importance": 1,
+            "country": "United Kingdom"
+          },
+          {
+            "date": "2024-11-07 19:00:00.000",
+            "event": "BBA 모기지 금리 (10월)",
+            "time": " 19:00",
+            "actual": "",
+            "forecast": "",
+            "previous": "7.69%",
+            "importance": 1,
+            "country": "United Kingdom"
+          },
+          {
+            "date": "2024-11-07 21:00:00.000",
+            "event": "BOE 기준금리 결정 ",
+            "time": " 21:00",
+            "actual": "",
+            "forecast": "4.75%",
+            "previous": "5%",
+            "importance": 3,
+            "country": "United Kingdom"
+          },
+          {
+            "date": "2024-11-07 21:00:00.000",
+            "event": "BOE MPC 표결 (금리인상) ",
+            "time": " 21:00",
+            "actual": "",
+            "forecast": "0/9",
+            "previous": "0/9",
+            "importance": 2,
+            "country": "United Kingdom"
+          },
+          {
+            "date": "2024-11-07 21:00:00.000",
+            "event": "BOE MPC 표결 (금리동결) ",
+            "time": " 21:00",
+            "actual": "",
+            "forecast": "2/9",
+            "previous": "8/9",
+            "importance": 2,
+            "country": "United Kingdom"
+          },
+          {
+            "date": "2024-11-07 21:00:00.000",
+            "event": "BOE MPC 표결 (금리인하) ",
+            "time": " 21:00",
+            "actual": "",
+            "forecast": "7/9",
+            "previous": "1/9",
+            "importance": 2,
+            "country": "United Kingdom"
+          },
+          {
+            "date": "2024-11-07 21:00:00.000",
+            "event": "MPC 회의록 ",
+            "time": " 21:00",
+            "actual": "",
+            "forecast": "",
+            "previous": "",
+            "importance": 2,
+            "country": "United Kingdom"
+          },
+          {
+            "date": "2024-11-07 21:00:00.000",
+            "event": "BOE 통화정책 보고서 ",
+            "time": " 21:00",
+            "actual": "",
+            "forecast": "",
+            "previous": "",
+            "importance": 2,
+            "country": "United Kingdom"
+          }
+        ],
+        "France": [
+          {
+            "date": "2024-11-07 16:45:00.000",
+            "event": "비농업 민간 고용수 잠정치 (전분기비) Q3",
+            "time": " 16:45",
+            "actual": "",
+            "forecast": "0%",
+            "previous": "0%",
+            "importance": 1,
+            "country": "France"
+          },
+          {
+            "date": "2024-11-07 16:45:00.000",
+            "event": "외환 보유고 (10월)",
+            "time": " 16:45",
+            "actual": "",
+            "forecast": "",
+            "previous": "€260.783B",
+            "importance": 1,
+            "country": "France"
+          },
+          {
+            "date": "2024-11-07 17:30:00.000",
+            "event": "HCOB 건설업 구매관리자지수(PMI) (10월)",
+            "time": " 17:30",
+            "actual": "",
+            "forecast": "",
+            "previous": "37.9",
+            "importance": 1,
+            "country": "France"
+          },
+          {
+            "date": "2024-11-07 19:00:00.000",
+            "event": "10년 만기 국채 입찰 ",
+            "time": " 19:00",
+            "actual": "",
+            "forecast": "",
+            "previous": "2.92%",
+            "importance": 1,
+            "country": "France"
+          },
+          {
+            "date": "2024-11-07 19:00:00.000",
+            "event": "20년물 OAT 경매 ",
+            "time": " 19:00",
+            "actual": "",
+            "forecast": "",
+            "previous": "3.42%",
+            "importance": 1,
+            "country": "France"
+          },
+          {
+            "date": "2024-11-07 19:00:00.000",
+            "event": "30년물 OAT 경매 ",
+            "time": " 19:00",
+            "actual": "",
+            "forecast": "",
+            "previous": "3.55%",
+            "importance": 1,
+            "country": "France"
+          }
+        ],
+        "Hong Kong": [
+          {
+            "date": "2024-11-07 17:30:00.000",
+            "event": "외환 보유고 (10월)",
+            "time": " 17:30",
+            "actual": "",
+            "forecast": "",
+            "previous": "$422.8B",
+            "importance": 1,
+            "country": "Hong Kong"
+          }
+        ],
+        "Germany": [
+          {
+            "date": "2024-11-07 16:00:00.000",
+            "event": "산업생산 (전월비) (9월)",
+            "time": " 16:00",
+            "actual": "",
+            "forecast": "-1%",
+            "previous": "2.9%",
+            "importance": 2,
+            "country": "Germany"
+          },
+          {
+            "date": "2024-11-07 16:00:00.000",
+            "event": "무역수지 (9월)",
+            "time": " 16:00",
+            "actual": "",
+            "forecast": "€20.9B",
+            "previous": "€22.5B",
+            "importance": 3,
+            "country": "Germany"
+          },
+          {
+            "date": "2024-11-07 16:00:00.000",
+            "event": "수입액 (전월비) (9월)",
+            "time": " 16:00",
+            "actual": "",
+            "forecast": "0.5%",
+            "previous": "-3.4%",
+            "importance": 1,
+            "country": "Germany"
+          },
+          {
+            "date": "2024-11-07 16:00:00.000",
+            "event": "수출액 (전월비) (9월)",
+            "time": " 16:00",
+            "actual": "",
+            "forecast": "-1.4%",
+            "previous": "1.3%",
+            "importance": 2,
+            "country": "Germany"
+          },
+          {
+            "date": "2024-11-07 17:30:00.000",
+            "event": "HCOB 건설 PMI (10월)",
+            "time": " 17:30",
+            "actual": "",
+            "forecast": "",
+            "previous": "41.7",
+            "importance": 1,
+            "country": "Germany"
+          }
+        ],
+        "China": [
+          {
+            "date": "2024-11-07 09:00:00.000",
+            "event": "상무위원회 전국인민대표대회 ",
+            "time": " 09:00",
+            "actual": "",
+            "forecast": "",
+            "previous": "",
+            "importance": 2,
+            "country": "China"
+          },
+          {
+            "date": "2024-11-07 12:30:00.000",
+            "event": "무역수지 (10월)",
+            "time": " 12:30",
+            "actual": "$95.27B",
+            "forecast": "$75.1B",
+            "previous": "$81.71B",
+            "importance": 3,
+            "country": "China"
+          },
+          {
+            "date": "2024-11-07 12:30:00.000",
+            "event": "수출액 (전년비) (10월)",
+            "time": " 12:30",
+            "actual": "12.7%",
+            "forecast": "5%",
+            "previous": "2.4%",
+            "importance": 2,
+            "country": "China"
+          },
+          {
+            "date": "2024-11-07 12:30:00.000",
+            "event": "수입액 (전년비) (10월)",
+            "time": " 12:30",
+            "actual": "-2.3%",
+            "forecast": "-1.5%",
+            "previous": "0.3%",
+            "importance": 2,
+            "country": "China"
+          },
+          {
+            "date": "2024-11-07 17:00:00.000",
+            "event": "외환 보유고 (10월)",
+            "time": " 17:00",
+            "actual": "",
+            "forecast": "$3.29T",
+            "previous": "$3.316T",
+            "importance": 1,
+            "country": "China"
+          }
+        ],
+        "Japan": [
+          {
+            "date": "2024-11-07 08:30:00.000",
+            "event": "평균근로소득 (전년비) (9월)",
+            "time": " 08:30",
+            "actual": "2.8%",
+            "forecast": "2.8%",
+            "previous": "2.8%",
+            "importance": 1,
+            "country": "Japan"
+          },
+          {
+            "date": "2024-11-07 08:30:00.000",
+            "event": "초과 근무 수당 (전년비) (9월)",
+            "time": " 08:30",
+            "actual": "-0.4%",
+            "forecast": "",
+            "previous": "1.7%",
+            "importance": 1,
+            "country": "Japan"
+          },
+          {
+            "date": "2024-11-07 12:35:00.000",
+            "event": "10년 만기 국채 입찰 ",
+            "time": " 12:35",
+            "actual": "1%",
+            "forecast": "",
+            "previous": "0.871%",
+            "importance": 1,
+            "country": "Japan"
+          },
+          {
+            "date": "2024-11-07 12:35:00.000",
+            "event": "6개월 만기 국채 입찰 ",
+            "time": " 12:35",
+            "actual": "0.1886%",
+            "forecast": "",
+            "previous": "0.0702%",
+            "importance": 1,
+            "country": "Japan"
+          }
+        ],
+        "South Korea": [
+          {
+            "date": "2024-11-07 08:00:00.000",
+            "event": "경상수지 (9월)",
+            "time": " 08:00",
+            "actual": "$11.12B",
+            "forecast": "",
+            "previous": "$6.6B",
+            "importance": 1,
+            "country": "South Korea"
+          }
+        ]
+      },
+      "2024-11-06": {
+        "Euro Area": [
+          {
+            "date": "2024-11-06 03:30:00.000",
+            "event": "ECB Schnabel 연설 ",
+            "time": " 03:30",
+            "actual": "",
+            "forecast": "",
+            "previous": "",
+            "importance": 1,
+            "country": "Euro Area"
+          },
+          {
+            "date": "2024-11-06 18:00:00.000",
+            "event": "HCOB 종합 구매관리자지수(PMI) 최종 (10월)",
+            "time": " 18:00",
+            "actual": "50.0",
+            "forecast": "49.7",
+            "previous": "49.6",
+            "importance": 1,
+            "country": "Euro Area"
+          },
+          {
+            "date": "2024-11-06 18:00:00.000",
+            "event": "HCOB 서비스업 구매관리자지수(PMI) 최종 (10월)",
+            "time": " 18:00",
+            "actual": "51.6",
+            "forecast": "51.2",
+            "previous": "51.4",
+            "importance": 2,
+            "country": "Euro Area"
+          },
+          {
+            "date": "2024-11-06 19:00:00.000",
+            "event": "생산자 물가지수(PPI) (전월비) (9월)",
+            "time": " 19:00",
+            "actual": "-0.6%",
+            "forecast": "-0.6%",
+            "previous": "0.6%",
+            "importance": 1,
+            "country": "Euro Area"
+          },
+          {
+            "date": "2024-11-06 19:00:00.000",
+            "event": "생산자 물가지수(PPI) (전년비) (9월)",
+            "time": " 19:00",
+            "actual": "-3.4%",
+            "forecast": "-3.5%",
+            "previous": "-2.3%",
+            "importance": 1,
+            "country": "Euro Area"
+          },
+          {
+            "date": "2024-11-06 23:00:00.000",
+            "event": "ECB 회장 Lagarde 연설 ",
+            "time": " 23:00",
+            "actual": "",
+            "forecast": "",
+            "previous": "",
+            "importance": 2,
+            "country": "Euro Area"
+          },
+          {
+            "date": "2024-11-06 23:10:00.000",
+            "event": "ECB 도서 연설 ",
+            "time": " 23:10",
+            "actual": "",
+            "forecast": "",
+            "previous": "",
+            "importance": 1,
+            "country": "Euro Area"
+          },
+          {
+            "date": "2024-11-06 23:30:00.000",
+            "event": "ECB Guindos 연설 ",
+            "time": " 23:30",
+            "actual": "",
+            "forecast": "",
+            "previous": "",
+            "importance": 1,
+            "country": "Euro Area"
+          }
+        ],
+        "United States": [
+          {
+            "date": "2024-11-06 00:00:00.000",
+            "event": "ISM 서비스업 물가 지수 (10월)",
+            "time": " 00:00",
+            "actual": "58.1",
+            "forecast": "58.0",
+            "previous": "59.4",
+            "importance": 1,
+            "country": "United States"
+          },
+          {
+            "date": "2024-11-06 00:00:00.000",
+            "event": "ISM 서비스업 신규주문 지수 (10월)",
+            "time": " 00:00",
+            "actual": "57.4",
+            "forecast": "58.0",
+            "previous": "59.4",
+            "importance": 1,
+            "country": "United States"
+          },
+          {
+            "date": "2024-11-06 00:00:00.000",
+            "event": "ISM 서비스업 구매관리자지수(PMI) (10월)",
+            "time": " 00:00",
+            "actual": "56",
+            "forecast": "53.8",
+            "previous": "54.9",
+            "importance": 3,
+            "country": "United States"
+          },
+          {
+            "date": "2024-11-06 00:00:00.000",
+            "event": "ISM 서비스업 경제활동 지수 (10월)",
+            "time": " 00:00",
+            "actual": "57.2",
+            "forecast": "",
+            "previous": "59.9",
+            "importance": 1,
+            "country": "United States"
+          },
+          {
+            "date": "2024-11-06 00:00:00.000",
+            "event": "ISM 서비스 고용 (10월)",
+            "time": " 00:00",
+            "actual": "53.0",
+            "forecast": "48.0",
+            "previous": "48.1",
+            "importance": 1,
+            "country": "United States"
+          },
+          {
+            "date": "2024-11-06 01:30:00.000",
+            "event": "42 일 빌 경매 ",
+            "time": " 01:30",
+            "actual": "4.550%",
+            "forecast": "",
+            "previous": "4.630%",
+            "importance": 1,
+            "country": "United States"
+          },
+          {
+            "date": "2024-11-06 01:40:00.000",
+            "event": "총 차량 판매 (10월)",
+            "time": " 01:40",
+            "actual": "16M",
+            "forecast": "15.6M",
+            "previous": "15.8M",
+            "importance": 1,
+            "country": "United States"
+          },
+          {
+            "date": "2024-11-06 03:00:00.000",
+            "event": "10년물 국채 입찰 ",
+            "time": " 03:00",
+            "actual": "4.347%",
+            "forecast": "",
+            "previous": "4.066%",
+            "importance": 2,
+            "country": "United States"
+          },
+          {
+            "date": "2024-11-06 06:30:00.000",
+            "event": "API 원유 재고 변화 (11월 01일)",
+            "time": " 06:30",
+            "actual": "3.132M",
+            "forecast": "1.8M",
+            "previous": "-0.573M",
+            "importance": 2,
+            "country": "United States"
+          },
+          {
+            "date": "2024-11-06 21:00:00.000",
+            "event": "MBA 모기지 신청건수 (전주비) (11월 01일)",
+            "time": " 21:00",
+            "actual": "-10.8%",
+            "forecast": "",
+            "previous": "-0.1%",
+            "importance": 1,
+            "country": "United States"
+          },
+          {
+            "date": "2024-11-06 21:00:00.000",
+            "event": "MBA 30년 모기지 금리 (11월 01일)",
+            "time": " 21:00",
+            "actual": "6.81%",
+            "forecast": "",
+            "previous": "6.73%",
+            "importance": 1,
+            "country": "United States"
+          },
+          {
+            "date": "2024-11-06 21:00:00.000",
+            "event": "MBA 구매 지수 (11월 01일)",
+            "time": " 21:00",
+            "actual": "130.8",
+            "forecast": "",
+            "previous": "137.8",
+            "importance": 1,
+            "country": "United States"
+          },
+          {
+            "date": "2024-11-06 21:00:00.000",
+            "event": "MBA 모기지 재융자 지수 (11월 01일)",
+            "time": " 21:00",
+            "actual": "513.5",
+            "forecast": "",
+            "previous": "630.0",
+            "importance": 1,
+            "country": "United States"
+          },
+          {
+            "date": "2024-11-06 21:00:00.000",
+            "event": "MBA 모기지 시장 지수 (11월 01일)",
+            "time": " 21:00",
+            "actual": "191.4",
+            "forecast": "",
+            "previous": "214.5",
+            "importance": 1,
+            "country": "United States"
+          }
+        ],
+        "Germany": [
+          {
+            "date": "2024-11-06 16:00:00.000",
+            "event": "공장주문 (전월비) (9월)",
+            "time": " 16:00",
+            "actual": "4.2%",
+            "forecast": "1.5%",
+            "previous": "-5.4%",
+            "importance": 2,
+            "country": "Germany"
+          },
+          {
+            "date": "2024-11-06 17:55:00.000",
+            "event": "HCOB 서비스업 구매관리자지수(PMI) 최종 (10월)",
+            "time": " 17:55",
+            "actual": "51.6",
+            "forecast": "51.4",
+            "previous": "50.6",
+            "importance": 2,
+            "country": "Germany"
+          },
+          {
+            "date": "2024-11-06 17:55:00.000",
+            "event": "HCOB 종합 구매관리자지수(PMI) 최종 (10월)",
+            "time": " 17:55",
+            "actual": "48.6",
+            "forecast": "48.4",
+            "previous": "47.5",
+            "importance": 1,
+            "country": "Germany"
+          },
+          {
+            "date": "2024-11-06 19:00:00.000",
+            "event": "신규 자동차 등록 (전년비) (10월)",
+            "time": " 19:00",
+            "actual": "6%",
+            "forecast": "",
+            "previous": "-7%",
+            "importance": 1,
+            "country": "Germany"
+          },
+          {
+            "date": "2024-11-06 19:30:00.000",
+            "event": "15년 만기 국채 입찰 ",
+            "time": " 19:30",
+            "actual": "2.64%",
+            "forecast": "",
+            "previous": "2.52%",
+            "importance": 1,
+            "country": "Germany"
+          }
+        ],
+        "United Kingdom": [
+          {
+            "date": "2024-11-06 18:30:00.000",
+            "event": "S&P 글로벌 건설 PMI (10월)",
+            "time": " 18:30",
+            "actual": "54.3",
+            "forecast": "55.5",
+            "previous": "57.2",
+            "importance": 2,
+            "country": "United Kingdom"
+          }
+        ],
+        "France": [
+          {
+            "date": "2024-11-06 17:50:00.000",
+            "event": "HCOB 서비스업 구매관리자지수(PMI) 최종 (10월)",
+            "time": " 17:50",
+            "actual": "49.2",
+            "forecast": "48.3",
+            "previous": "49.6",
+            "importance": 2,
+            "country": "France"
+          },
+          {
+            "date": "2024-11-06 17:50:00.000",
+            "event": "HCOB 종합 구매관리자지수(PMI) 최종 (10월)",
+            "time": " 17:50",
+            "actual": "48.1",
+            "forecast": "47.3",
+            "previous": "48.6",
+            "importance": 1,
+            "country": "France"
+          }
+        ],
+        "Taiwan": [
+          {
+            "date": "2024-11-06 17:00:00.000",
+            "event": "인플레이션율 (전년비) (10월)",
+            "time": " 17:00",
+            "actual": "1.69%",
+            "forecast": "1.8%",
+            "previous": "1.82%",
+            "importance": 1,
+            "country": "Taiwan"
+          },
+          {
+            "date": "2024-11-06 17:00:00.000",
+            "event": "인플레이션율 (전월비) (10월)",
+            "time": " 17:00",
+            "actual": "0.11%",
+            "forecast": "",
+            "previous": "0.38%",
+            "importance": 1,
+            "country": "Taiwan"
+          }
+        ],
+        "Japan": [
+          {
+            "date": "2024-11-06 08:50:00.000",
+            "event": "BOJ 통화정책 회의록 ",
+            "time": " 08:50",
+            "actual": "",
+            "forecast": "",
+            "previous": "",
+            "importance": 2,
+            "country": "Japan"
+          },
+          {
+            "date": "2024-11-06 09:00:00.000",
+            "event": "로이터 단칸 지수 (11월)",
+            "time": " 09:00",
+            "actual": "5",
+            "forecast": "",
+            "previous": "7",
+            "importance": 2,
+            "country": "Japan"
+          },
+          {
+            "date": "2024-11-06 09:30:00.000",
+            "event": "Jibun은행 종합 구매관리자지수(PMI) 최종 (10월)",
+            "time": " 09:30",
+            "actual": "49.6",
+            "forecast": "",
+            "previous": "52",
+            "importance": 1,
+            "country": "Japan"
+          },
+          {
+            "date": "2024-11-06 09:30:00.000",
+            "event": "Jibun은행 서비스업 구매관리자지수(PMI) 최종 (10월)",
+            "time": " 09:30",
+            "actual": "49.7",
+            "forecast": "49.3",
+            "previous": "53.1",
+            "importance": 2,
+            "country": "Japan"
+          }
+        ],
+        "China": [
+          {
+            "date": "2024-11-06 09:00:00.000",
+            "event": "상무위원회 전국인민대표대회 ",
+            "time": " 09:00",
+            "actual": "",
+            "forecast": "",
+            "previous": "",
+            "importance": 2,
+            "country": "China"
+          }
+        ]
+      }
+    }
+  },
+  "timestamp": "2024. 11. 7. 오후 1:30:13"
 }]

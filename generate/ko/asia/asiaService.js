@@ -54,33 +54,29 @@ Handlebars.registerHelper({
   },
 });
 
-// 이름 매핑
+// 이름 매핑 수정
 const mappings = {
   indexNameMap: {
-    'S&P 500': 'S&P 500',
-    DJI: '다우존스 산업평균지수',
-    NDX: '나스닥 100',
-    RUT: '러셀 2000',
-    SOX: '필라델피아 반도체 지수',
-    DXY: '달러 인덱스',
+    'SSEC': '상해종합지수',
+    'HSI': '항셍지수',
+    'N225': '닛케이 225',
+    'KOSPI': '코스피',
+    'MSCITW': 'MSCI 대만',
   },
   commodityNameMap: {
-    Gold: '금',
-    WTI: 'WTI 원유',
-    Brent: '브렌트유',
-    NG: '천연가스',
+    'Gold': '금',
+    'WTI': 'WTI 원유',
+    'Brent': '브렌트유',
+    'NG': '천연가스',
   },
   exchangeRateMap: {
+    'CNY/KRW': '위안/원',
+    'JPY/KRW': '엔/원',
     'USD/KRW': '달러/원',
   },
   cryptoNameMap: {
-    BTC: '비트코인',
-    ETH: '이더리움',
-  },
-  treasuryNameMap: {
-    '2-Year Treasury Yield': '2년물',
-    '10-Year Treasury Yield': '10년물',
-    '30-Year Treasury Yield': '30년물',
+    'BTC': '비트코인',
+    'ETH': '이더리움',
   },
 };
 
@@ -91,10 +87,25 @@ const getImagePath = (imageName) => {
 
 // 국가 매핑 수정
 const countryMap = {
-  'United States': {
-    code: 'US',
-    name: 'USA',
-    flag: getImagePath('us.svg')
+  'China': {
+    code: 'CN',
+    name: 'CHN',
+    flag: getImagePath('cn.svg')
+  },
+  'Japan': {
+    code: 'JP',
+    name: 'JPN',
+    flag: getImagePath('jp.svg')
+  },
+  'South Korea': {
+    code: 'KR',
+    name: 'KOR',
+    flag: getImagePath('kr.svg')
+  },
+  'Taiwan': {
+    code: 'TW',
+    name: 'TWN',
+    flag: getImagePath('tw.svg')
   }
 };
 
@@ -102,12 +113,11 @@ Object.entries(mappings).forEach(([helperName, map]) => {
   Handlebars.registerHelper(helperName, (name) => map[name] || name);
 });
 
-// 원하는 데이터 목록 정의
-const WANTED_INDICES = ['S&P 500', 'DJI', 'NDX', 'RUT', 'SOX', 'DXY'];
+// 원하는 데이터 목록 수정
+const WANTED_INDICES = ['SSEC', 'HK40', 'N225', 'KOSPI', 'MSCITW'];
 const WANTED_COMMODITIES = ['Gold', 'WTI', 'Brent', 'NG'];
-const WANTED_EXCHANGE_RATES = ['USD/KRW'];
+const WANTED_EXCHANGE_RATES = ['CNY/KRW', 'JPY/KRW', 'USD/KRW'];
 const WANTED_CRYPTO = ['BTC', 'ETH'];
-const WANTED_TREASURY = ['2-Year Treasury Yield', '10-Year Treasury Yield', '30-Year Treasury Yield'];
 
 // MongoDB 연결 및 데이터 가져오기 함수
 async function getMarketData() {
@@ -136,33 +146,58 @@ async function getMarketData() {
     const filteredData = {
       indices: data.market_data.indices?.filter((index) => WANTED_INDICES.includes(index.name)) || [],
       commodities: data.market_data.commodities?.filter((commodity) => WANTED_COMMODITIES.includes(commodity.name)) || [],
-      exchange_rates: data.market_data.exchange_rates?.filter((rate) => WANTED_EXCHANGE_RATES.includes(rate.name)) || [],
+      exchange_rates: data.market_data.exchange_rates
+        ?.filter(rate => ['USD/CNY', 'USD/JPY', 'USD/KRW'].includes(rate.name))
+        .map(rate => {
+          const usdKrw = data.market_data.exchange_rates.find(r => r.name === 'USD/KRW')?.current_price || 1;
+          
+          if (rate.name === 'USD/KRW') {
+            return {
+              name: 'USD/KRW',
+              current_price: rate.current_price,
+              change_amount: rate.change_amount,
+              change_percent: rate.change_percent
+            };
+          }
+          
+          const currency = rate.name.split('/')[1];
+          return {
+            name: `${currency}/KRW`,
+            current_price: usdKrw / rate.current_price,
+            change_amount: rate.change_amount,
+            change_percent: rate.change_percent
+          };
+        }) || [],
       cryptocurrency: data.market_data.cryptocurrency?.filter((crypto) => WANTED_CRYPTO.includes(crypto.name)) || [],
-      treasury_yields: data.market_data.treasury_yields?.filter((treasury) => WANTED_TREASURY.includes(treasury.name)) || [],
       economic_calendar: {},
     };
 
     const calendar = data.market_data.economic_calendar || {};
     for (const date in calendar) {
-      if (calendar[date]?.['United States']) {
-        const eventsWithCountry = calendar[date]['United States']
-          .filter(event => event.importance >= 2)
-          .map(event => {
-            const flagPath = countryMap['United States'].flag;
-            const flagContent = fs.readFileSync(flagPath, 'utf8');
-            return {
-              ...event,
-              country: {
-                ...countryMap['United States'],
-                flag: `data:image/svg+xml;base64,${Buffer.from(flagContent).toString('base64')}`
-              }
-            };
-          }).sort((a, b) => new Date(a.date) - new Date(b.date));
+      filteredData.economic_calendar[date] = {};
+      
+      ['China', 'Japan', 'South Korea', 'Taiwan'].forEach(country => {
+        if (calendar[date]?.[country]) {
+          const eventsWithCountry = calendar[date][country]
+            .filter(event => event.importance >= 2)  // 중요도 2-3인 이벤트만 필터링
+            .map(event => {
+              const flagPath = countryMap[country].flag;
+              const flagContent = fs.readFileSync(flagPath, 'utf8');
+              return {
+                ...event,
+                country: {
+                  ...countryMap[country],
+                  flag: `data:image/svg+xml;base64,${Buffer.from(flagContent).toString('base64')}`
+                }
+              };
+            })
+            .sort((a, b) => new Date(a.date) - new Date(b.date));
 
-        filteredData.economic_calendar[date] = {
-          'United States': eventsWithCountry
-        };
-      }
+          if (eventsWithCountry.length > 0) {
+            filteredData.economic_calendar[date][country] = eventsWithCountry;
+          }
+        }
+      });
     }
     return filteredData;
   } catch (error) {
@@ -221,8 +256,12 @@ export async function generateHTML() {
         day: formatInTimeZone(previousBusinessDay, timeZone, 'd'),
         weekday: weekdays[formatInTimeZone(previousBusinessDay, timeZone, 'i') - 1],
       },
-      yesterday_calendar: marketData.economic_calendar[previousDateString]?.['United States'] || [],
-      today_calendar: marketData.economic_calendar[todayDateString]?.['United States'] || [],
+      yesterday_calendar: Object.values(marketData.economic_calendar[previousDateString] || {})
+        .flat()
+        .sort((a, b) => new Date(a.date) - new Date(b.date)),
+      today_calendar: Object.values(marketData.economic_calendar[todayDateString] || {})
+        .flat()
+        .sort((a, b) => new Date(a.date) - new Date(b.date)),
     };
 
     const template = fs.readFileSync(join(__dirname, 'template', 'template.html'), 'utf-8');

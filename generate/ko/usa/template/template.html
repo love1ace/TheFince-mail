@@ -217,7 +217,7 @@
 
                     <tr>
                         <td class="section-style">
-                            <h2>오늘 발표된 지표</h2>
+                            <h2>{{yesterday_date.year}}년 {{yesterday_date.month}}월 {{yesterday_date.day}}일 ({{yesterday_date.weekday}})</h2>
                             <table class="calendar-table">
                                 {{#each yesterday_calendar}}
                                 <tr class="calendar-row">
@@ -249,7 +249,7 @@
 
                     <tr>
                         <td class="section-style">
-                            <h2>내일 예정된 지표</h2>
+                            <h2>{{today_date.year}}년 {{today_date.month}}월 {{today_date.day}}일 ({{today_date.weekday}})</h2>
                             <table class="calendar-table">
                                 {{#each today_calendar}}
                                 <tr class="calendar-row">
