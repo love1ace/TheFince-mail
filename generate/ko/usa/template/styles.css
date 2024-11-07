@@ -173,9 +173,9 @@ table {
 }
 
 .calendar-country img {
-    width: 20px;
+    width: 22px;
     height: 14px;
-    object-fit: cover;
+    object-fit: fill;
 }
 
 .calendar-country span {

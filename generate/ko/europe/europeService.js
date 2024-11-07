@@ -22,11 +22,10 @@ registerHelpers();
 // 이름 매핑 수정
 const mappings = {
   indexNameMap: {
-    'SSEC': '상해종합지수',
-    'HSI': '항셍지수',
-    'N225': '닛케이 225',
-    'KOSPI': '코스피',
-    'MSCITW': 'MSCI 대만',
+    'EU50': 'Euro Stoxx 50',
+    'UK100': '영국 FTSE 100',
+    'DAX': '독일 DAX 40',
+    'FRA40': '프랑스 CAC 40',
   },
   commodityNameMap: {
     'Gold': '금',
@@ -35,9 +34,8 @@ const mappings = {
     'NG': '천연가스',
   },
   exchangeRateMap: {
-    'CNY/KRW': '위안/원',
-    'JPY/KRW': '엔/원',
-    'USD/KRW': '달러/원',
+    'EUR/KRW': '유로/원',
+    'GBP/KRW': '파운드/원',
   },
   cryptoNameMap: {
     'BTC': '비트코인',
@@ -55,32 +53,32 @@ const getImagePath = (imageName) => {
 
 // 국가 매핑 수정
 const countryMap = {
-  'China': {
-    code: 'CN',
-    name: 'CHN',
-    flag: getImagePath('cn.svg')
+  'Euro Area': {
+    code: 'EU',
+    name: 'EUR',
+    flag: getImagePath('eu.svg')
   },
-  'Japan': {
-    code: 'JP',
-    name: 'JPN',
-    flag: getImagePath('jp.svg')
+  'United Kingdom': {
+    code: 'GB',
+    name: 'GBR',
+    flag: getImagePath('gb.svg')
   },
-  'South Korea': {
-    code: 'KR',
-    name: 'KOR',
-    flag: getImagePath('kr.svg')
+  'Germany': {
+    code: 'DE',
+    name: 'DEU', 
+    flag: getImagePath('de.svg')
   },
-  'Taiwan': {
-    code: 'TW',
-    name: 'TWN',
-    flag: getImagePath('tw.svg')
+  'France': {
+    code: 'FR',
+    name: 'FRA',
+    flag: getImagePath('fr.svg')
   }
 };
 
 // 원하는 데이터 목록 수정
-const WANTED_INDICES = ['SSEC', 'HK40', 'N225', 'KOSPI', 'MSCITW'];
+const WANTED_INDICES = ['EU50', 'UK100', 'DAX', 'FRA40'];
 const WANTED_COMMODITIES = ['Gold', 'WTI', 'Brent', 'NG'];
-const WANTED_EXCHANGE_RATES = ['CNY/KRW', 'JPY/KRW', 'USD/KRW'];
+const WANTED_EXCHANGE_RATES = ['EUR/KRW', 'GBP/KRW'];
 const WANTED_CRYPTO = ['BTC', 'ETH'];
 
 // MongoDB 연결 및 데이터 가져오기 함수
@@ -139,7 +137,7 @@ async function getMarketData() {
     for (const date in calendar) {
       filteredData.economic_calendar[date] = {};
       
-      ['China', 'Japan', 'South Korea', 'Taiwan'].forEach(country => {
+      ['Euro Area', 'United Kingdom', 'Germany', 'France'].forEach(country => {
         if (calendar[date]?.[country]) {
           const eventsWithCountry = calendar[date][country]
             .filter(event => event.importance >= 2)  // 중요도 2-3인 이벤트만 필터링

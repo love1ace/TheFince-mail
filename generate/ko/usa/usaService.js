@@ -6,7 +6,8 @@ import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import { formatInTimeZone } from 'date-fns-tz';
-import { subDays, isWeekend } from 'date-fns';
+import { registerHelpers, registerMappingHelpers } from '../../../utils/handlebarHelpers.js';
+import { getFormattedDates } from '../../../utils/dateUtils.js';
 
 // ES 모듈에서 __dirname 설정
 const __filename = fileURLToPath(import.meta.url);
@@ -15,46 +16,10 @@ const __dirname = dirname(__filename);
 // .env 파일 로드
 dotenv.config();
 
-// Handlebars 헬퍼 함수 등록
-Handlebars.registerHelper({
-  formatNumber(number) {
-    if (number == null) return '';
-    if (Math.abs(number) < 1000) {
-      return Number.isInteger(number) ? number : number.toFixed(3);
-    }
-    return number.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 2 });
-  },
-  formatChange(value) {
-    if (value == null) return '';
-    const formattedValue = Handlebars.helpers.formatNumber(Math.abs(value));
-    return value > 0 ? `+${formattedValue}` : `-${formattedValue}`;
-  },
-  formatChangePercent(value) {
-    if (value == null) return '';
-    const formattedValue = Math.abs(value);
-    return value > 0 ? `+${formattedValue}%` : `${formattedValue}%`;
-  },
-  getChangeClass(change) {
-    if (change == null) return 'neutral';
-    return change > 0 ? 'positive' : change < 0 ? 'negative' : 'neutral';
-  },
-  formatImportance(importance) {
-    const stars = Number(importance) || 1;
-    let result = '';
-    for (let i = 0; i < 3; i++) {
-      result += `<span class="${i < stars ? 'star-filled' : 'star-empty'}">★</span>`;
-    }
-    return new Handlebars.SafeString(result);
-  },
-  getValueClass(value, previous) {
-    if (!value || !previous) return '';
-    const numValue = parseFloat(value.replace(/[^0-9.-]/g, ''));
-    const numPrevious = parseFloat(previous.replace(/[^0-9.-]/g, ''));
-    return numValue > numPrevious ? 'positive' : numValue < numPrevious ? 'negative' : 'neutral';
-  },
-});
+// Handlebars 헬퍼 등록
+registerHelpers();
 
-// 이름 매핑
+// 매핑 정의 후
 const mappings = {
   indexNameMap: {
     'S&P 500': 'S&P 500',
@@ -84,6 +49,9 @@ const mappings = {
   },
 };
 
+// 매핑 헬퍼 등록
+registerMappingHelpers(mappings);
+
 // __dirname을 사용하여 이미지의 절대 경로 생성
 const getImagePath = (imageName) => {
   return join(__dirname, '../../../image/flags', imageName);
@@ -97,10 +65,6 @@ const countryMap = {
     flag: getImagePath('us.svg')
   }
 };
-
-Object.entries(mappings).forEach(([helperName, map]) => {
-  Handlebars.registerHelper(helperName, (name) => map[name] || name);
-});
 
 // 원하는 데이터 목록 정의
 const WANTED_INDICES = ['S&P 500', 'DJI', 'NDX', 'RUT', 'SOX', 'DXY'];
@@ -121,7 +85,6 @@ async function getMarketData() {
 
     const today = new Date();
     const timeZone = 'Asia/Seoul';
-    const koreaTime = formatInTimeZone(today, timeZone, 'yyyy-MM-dd');
     const dateString = formatInTimeZone(today, timeZone, 'yyyy-MM-dd');
 
     console.log('조회하려는 날짜:', dateString);
@@ -173,15 +136,6 @@ async function getMarketData() {
   }
 }
 
-// 이전 영업일 계산 함수
-function getPreviousBusinessDay(date) {
-  let prevDay = subDays(new Date(date), 1);
-  while (isWeekend(prevDay)) {
-    prevDay = subDays(prevDay, 1);
-  }
-  return prevDay;
-}
-
 // generateHTML 함수를 export 하도록 수정
 export async function generateHTML() {
   try {
@@ -197,32 +151,13 @@ export async function generateHTML() {
 
     const now = new Date();
     const timeZone = 'Asia/Seoul';
-    const koreaTime = formatInTimeZone(now, timeZone, 'yyyy-MM-dd');
-    const weekdays = ['월', '화', '수', '목', '금', '토', '일'];
-
-    const previousBusinessDay = getPreviousBusinessDay(koreaTime);
-    const previousDateString = formatInTimeZone(previousBusinessDay, timeZone, 'yyyy-MM-dd');
-    const todayDateString = formatInTimeZone(koreaTime, timeZone, 'yyyy-MM-dd');
-
-    const weekdayIndex = formatInTimeZone(previousBusinessDay, timeZone, 'i') - 1;
-    const weekday = weekdays[weekdayIndex];
+    const dates = getFormattedDates(now, timeZone);
 
     const data = {
       ...marketData,
-      today_date: {
-        year: formatInTimeZone(now, timeZone, 'yyyy'),
-        month: formatInTimeZone(now, timeZone, 'M'),
-        day: formatInTimeZone(now, timeZone, 'd'),
-        weekday: weekdays[formatInTimeZone(now, timeZone, 'i') - 1],
-      },
-      yesterday_date: {
-        year: formatInTimeZone(previousBusinessDay, timeZone, 'yyyy'),
-        month: formatInTimeZone(previousBusinessDay, timeZone, 'M'),
-        day: formatInTimeZone(previousBusinessDay, timeZone, 'd'),
-        weekday: weekdays[formatInTimeZone(previousBusinessDay, timeZone, 'i') - 1],
-      },
-      yesterday_calendar: marketData.economic_calendar[previousDateString]?.['United States'] || [],
-      today_calendar: marketData.economic_calendar[todayDateString]?.['United States'] || [],
+      ...dates,
+      yesterday_calendar: marketData.economic_calendar[dates.previousDateString]?.['United States'] || [],
+      today_calendar: marketData.economic_calendar[dates.todayDateString]?.['United States'] || [],
     };
 
     const template = fs.readFileSync(join(__dirname, 'template', 'template.html'), 'utf-8');
