@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="color-scheme" content="light dark only">
+    <meta name="supported-color-schemes" content="light dark only">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TheFince.com</title>
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
+</head>
+<body>
+    <table class="container">
+        <tr>
+            <td>
+                <table class="content-table">
+                    <tr>
+                        <td class="header-style">
+                            <h1>TheFince.com</h1>
+                            <p>{{today_date.year}}년 {{today_date.month}}월 {{today_date.day}}일 ({{today_date.weekday}})</p>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="section-style">
+                            <h2>세계 선물 지수</h2>
+                            <table class="card-table">
+                                <tbody>
+                                    {{#each indices}}
+                                    <tr>
+                                        <td class="card-cell">
+                                            <table class="card-inner">
+                                                <tr>
+                                                    <td class="left-side">
+                                                        <p class="main-name">{{indexNameMap name}}</p>
+                                                        <p class="sub-name">{{name}}</p>
+                                                    </td>
+                                                    <td class="right-side">
+                                                        <p class="price">
+                                                            <span>$</span>{{formatNumber current_price}}
+                                                        </p>
+                                                        <table class="changes-table">
+                                                            <tr>
+                                                                <td class="change-value {{getChangeClass change_percent}}">
+                                                                    {{formatChange change_amount}}
+                                                                </td>
+                                                                <td class="change-value {{getChangeClass change_percent}}">
+                                                                    {{formatChangePercent change_percent}}
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    {{/each}}
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="section-style">
+                            <h2>원자재</h2>
+                            <table class="card-table">
+                                <tbody>
+                                    {{#each commodities}}
+                                    <tr>
+                                        <td class="card-cell">
+                                            <table class="card-inner">
+                                                <tr>
+                                                    <td class="left-side">
+                                                        <p class="main-name">{{commodityNameMap name}}</p>
+                                                        <p class="sub-name">{{name}}</p>
+                                                    </td>
+                                                    <td class="right-side">
+                                                        <p class="price">
+                                                            <span>$</span>{{formatNumber current_price}}
+                                                        </p>
+                                                        <table class="changes-table">
+                                                            <tr>
+                                                                <td class="change-value {{getChangeClass change_percent}}">
+                                                                    {{formatChange change_amount}}
+                                                                </td>
+                                                                <td class="change-value {{getChangeClass change_percent}}">
+                                                                    {{formatChangePercent change_percent}}
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    {{/each}}
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="section-style">
+                            <h2>환율</h2>
+                            <table class="card-table">
+                                <tbody>
+                                    {{#each exchange_rates}}
+                                    <tr>
+                                        <td class="card-cell">
+                                            <table class="card-inner">
+                                                <tr>
+                                                    <td class="left-side">
+                                                        <p class="main-name">{{exchangeRateMap name}}</p>
+                                                        <p class="sub-name">{{name}}</p>
+                                                    </td>
+                                                    <td class="right-side">
+                                                        <p class="price">
+                                                            {{formatNumber current_price}}<span>₩</span>
+                                                        </p>
+                                                        <table class="changes-table">
+                                                            <tr>
+                                                                <td class="change-value {{getChangeClass change_percent}}">
+                                                                    {{formatChange change_amount}}
+                                                                </td>
+                                                                <td class="change-value {{getChangeClass change_percent}}">
+                                                                    {{formatChangePercent change_percent}}
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    {{/each}}
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="section-style">
+                            <h2>가상화폐</h2>
+                            <table class="card-table">
+                                <tbody>
+                                    {{#each cryptocurrency}}
+                                    <tr>
+                                        <td class="card-cell">
+                                            <table class="card-inner">
+                                                <tr>
+                                                    <td class="left-side">
+                                                        <p class="main-name">{{cryptoNameMap name}}</p>
+                                                        <p class="sub-name">{{name}}</p>
+                                                    </td>
+                                                    <td class="right-side">
+                                                        <p class="price">
+                                                            <span>$</span>{{formatNumber current_price}}
+                                                        </p>
+                                                        <table class="changes-table">
+                                                            <tr>
+                                                                <td class="change-value {{getChangeClass change_percent}}">
+                                                                    {{formatChange change_amount}}
+                                                                </td>
+                                                                <td class="change-value {{getChangeClass change_percent}}">
+                                                                    {{formatChangePercent change_percent}}
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    {{/each}}
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="section-style">
+                            <h2>{{yesterday_date.year}}년 {{yesterday_date.month}}월 {{yesterday_date.day}}일 ({{yesterday_date.weekday}})</h2>
+                            <table class="calendar-table">
+                                {{#each yesterday_calendar}}
+                                <tr class="calendar-row">
+                                    <td class="calendar-time-column">
+                                        <div class="calendar-time">{{time}}</div>
+                                        <div class="calendar-importance">{{formatImportance importance}}</div>
+                                    </td>
+                                    <td class="calendar-country-column">
+                                        <div class="calendar-country">
+                                            <span>{{country.name}}</span>
+                                            <img src="{{country.flag}}" alt="{{country.code}}">
+                                        </div>
+                                    </td>
+                                    <td class="calendar-event-column">
+                                        <div class="calendar-event">{{event}}</div>
+                                        <div class="calendar-values-line">
+                                            실제: <span class="{{getValueClass actual previous}}">{{actual}}</span> 
+                                            <span class="separator">|</span> 
+                                            예상: <span class="{{getValueClass forecast previous}}">{{forecast}}</span> 
+                                            <span class="separator">|</span> 
+                                            이전: {{previous}}
+                                        </div>
+                                    </td>
+                                </tr>
+                                {{/each}}
+                            </table>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="section-style">
+                            <h2>{{today_date.year}}년 {{today_date.month}}월 {{today_date.day}}일 ({{today_date.weekday}})</h2>
+                            <table class="calendar-table">
+                                {{#each today_calendar}}
+                                <tr class="calendar-row">
+                                    <td class="calendar-time-column">
+                                        <div class="calendar-time">{{time}}</div>
+                                        <div class="calendar-importance">{{formatImportance importance}}</div>
+                                    </td>
+                                    <td class="calendar-country-column">
+                                        <div class="calendar-country">
+                                            <span>{{country.name}}</span>
+                                            <img src="{{country.flag}}" alt="{{country.code}}">
+                                        </div>
+                                    </td>
+                                    <td class="calendar-event-column">
+                                        <div class="calendar-event">{{event}}</div>
+                                        <div class="calendar-values-line">
+                                            실제: <span class="{{getValueClass actual previous}}">{{actual}}</span> 
+                                            <span class="separator">|</span> 
+                                            예상: <span class="{{getValueClass forecast previous}}">{{forecast}}</span> 
+                                            <span class="separator">|</span> 
+                                            이전: {{previous}}
+                                        </div>
+                                    </td>
+                                </tr>
+                                {{/each}}
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="footer-style">
+                            <p class="footer-copyright">© 2024 TheFince.com. All rights reserved.</p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

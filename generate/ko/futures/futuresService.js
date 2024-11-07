@@ -22,11 +22,9 @@ registerHelpers();
 // 이름 매핑 수정
 const mappings = {
   indexNameMap: {
-    'SSEC': '상해종합지수',
-    'HSI': '항셍지수',
-    'N225': '닛케이 225',
-    'KOSPI': '코스피',
-    'MSCITW': 'MSCI 대만',
+    'NQ100': '나스닥 100',
+    'HK40': '항셍지수',
+    'KOR200': '코스피 200',
   },
   commodityNameMap: {
     'Gold': '금',
@@ -35,8 +33,6 @@ const mappings = {
     'NG': '천연가스',
   },
   exchangeRateMap: {
-    'CNY/KRW': '위안/원',
-    'JPY/KRW': '엔/원',
     'USD/KRW': '달러/원',
   },
   cryptoNameMap: {
@@ -55,32 +51,27 @@ const getImagePath = (imageName) => {
 
 // 국가 매핑 수정
 const countryMap = {
+  'United States': {
+    code: 'US',
+    name: 'USA',
+    flag: getImagePath('us.svg')
+  },
   'China': {
     code: 'CN',
     name: 'CHN',
     flag: getImagePath('cn.svg')
   },
-  'Japan': {
-    code: 'JP',
-    name: 'JPN',
-    flag: getImagePath('jp.svg')
-  },
   'South Korea': {
     code: 'KR',
     name: 'KOR',
     flag: getImagePath('kr.svg')
-  },
-  'Taiwan': {
-    code: 'TW',
-    name: 'TWN',
-    flag: getImagePath('tw.svg')
   }
 };
 
 // 원하는 데이터 목록 수정
-const WANTED_INDICES = ['SSEC', 'HSI', 'N225', 'KOSPI', 'MSCITW'];
+const WANTED_INDICES = ['NQ100', 'HK40', 'KOR200'];
 const WANTED_COMMODITIES = ['Gold', 'WTI', 'Brent', 'NG'];
-const WANTED_EXCHANGE_RATES = ['CNY/KRW', 'JPY/KRW', 'USD/KRW'];
+const WANTED_EXCHANGE_RATES = ['USD/KRW'];
 const WANTED_CRYPTO = ['BTC', 'ETH'];
 
 // MongoDB 연결 및 데이터 가져오기 함수
@@ -110,30 +101,7 @@ async function getMarketData() {
       indices: data.market_data.indices?.filter((index) => WANTED_INDICES.includes(index.name)) || [],
       commodities: data.market_data.commodities?.filter((commodity) => WANTED_COMMODITIES.includes(commodity.name)) || [],
       exchange_rates: data.market_data.exchange_rates
-        ?.filter(rate => {
-          return rate.name === 'USD/KRW' || 
-                 WANTED_EXCHANGE_RATES.map(r => r.replace('/KRW', '')).map(r => `USD/${r}`).includes(rate.name);
-        })
-        .map(rate => {
-          const usdKrw = data.market_data.exchange_rates.find(r => r.name === 'USD/KRW')?.current_price || 1;
-          
-          if (rate.name === 'USD/KRW') {
-            return {
-              name: 'USD/KRW',
-              current_price: rate.current_price,
-              change_amount: rate.change_amount,
-              change_percent: rate.change_percent
-            };
-          }
-          
-          const currency = rate.name.split('/')[1];
-          return {
-            name: `${currency}/KRW`,
-            current_price: usdKrw / rate.current_price,
-            change_amount: rate.change_amount,
-            change_percent: rate.change_percent
-          };
-        }) || [],
+        ?.filter(rate => WANTED_EXCHANGE_RATES.includes(rate.name)) || [],
       cryptocurrency: data.market_data.cryptocurrency?.filter((crypto) => WANTED_CRYPTO.includes(crypto.name)) || [],
       economic_calendar: {},
     };
@@ -142,7 +110,7 @@ async function getMarketData() {
     for (const date in calendar) {
       filteredData.economic_calendar[date] = {};
       
-      ['China', 'Japan', 'South Korea', 'Taiwan'].forEach(country => {
+      ['United States', 'China', 'South Korea'].forEach(country => {
         if (calendar[date]?.[country]) {
           const eventsWithCountry = calendar[date][country]
             .filter(event => event.importance >= 2)  // 중요도 2-3인 이벤트만 필터링
