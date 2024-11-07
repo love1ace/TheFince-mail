@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.682.0",
+    "@aws-sdk/client-ses": "^3.682.0",
+    "cors": "^2.8.5",
+    "date-fns": "^4.1.0",
+    "date-fns-tz": "^3.2.0",
+    "dotenv": "^16.4.5",
+    "handlebars": "^4.7.8",
+    "juice": "^11.0.0",
+    "mongodb": "^6.10.0",
+    "xml2js": "^0.6.2"
+  },
+  "type": "module",
+  "packageManager": "yarn@4.3.1+sha512.af78262d7d125afbfeed740602ace8c5e4405cd7f4735c08feb327286b2fdb2390fbca01589bfd1f50b1240548b74806767f5a063c94b67e431aabd0d86f7774"
+}
