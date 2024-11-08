@@ -26,7 +26,7 @@ const mappings = {
     'HSI': '항셍지수',
     'N225': '닛케이 225',
     'KOSPI': '코스피',
-    'MSCITW': 'MSCI 대만',
+    'TWII': '대만 가권',
   },
   commodityNameMap: {
     'Gold': '금',
@@ -78,7 +78,7 @@ const countryMap = {
 };
 
 // 원하는 데이터 목록 수정
-const WANTED_INDICES = ['SSEC', 'HSI', 'N225', 'KOSPI', 'MSCITW'];
+const WANTED_INDICES = ['SSEC', 'HSI', 'N225', 'KOSPI', 'TWII'];
 const WANTED_COMMODITIES = ['Gold', 'WTI', 'Brent', 'NG'];
 const WANTED_EXCHANGE_RATES = ['CNY/KRW', 'JPY/KRW', 'USD/KRW'];
 const WANTED_CRYPTO = ['BTC', 'ETH'];
