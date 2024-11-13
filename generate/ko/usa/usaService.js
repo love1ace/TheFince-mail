@@ -8,6 +8,7 @@ import { dirname, join } from 'path';
 import { formatInTimeZone } from 'date-fns-tz';
 import { registerHelpers, registerMappingHelpers } from '../../../utils/handlebarHelpers.js';
 import { getFormattedDates } from '../../../utils/dateUtils.js';
+import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
 
 // ES 모듈에서 __dirname 설정
 const __filename = fileURLToPath(import.meta.url);
@@ -73,6 +74,15 @@ const WANTED_EXCHANGE_RATES = ['USD/KRW'];
 const WANTED_CRYPTO = ['BTC', 'ETH'];
 const WANTED_TREASURY = ['2-Year Treasury Yield', '10-Year Treasury Yield', '30-Year Treasury Yield'];
 
+// S3 클라이언트 설정
+const s3Client = new S3Client({
+  region: 'ap-northeast-2',
+  credentials: {
+    accessKeyId: process.env.S3_ACCESS_KEY_ID,
+    secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
+  },
+});
+
 // MongoDB 연결 및 데이터 가져오기 함수
 async function getMarketData() {
   const client = new MongoClient(process.env.MONGODB_URI);
@@ -85,6 +95,8 @@ async function getMarketData() {
 
     const today = new Date();
     const timeZone = 'Asia/Seoul';
+    
+    // 주말 처리 로직 제거하고 현재 날짜 그대로 사용
     const dateString = formatInTimeZone(today, timeZone, 'yyyy-MM-dd');
 
     console.log('조회하려는 날짜:', dateString);
@@ -97,36 +109,34 @@ async function getMarketData() {
     }
 
     const filteredData = {
-      indices: data.market_data.indices?.filter((index) => WANTED_INDICES.includes(index.name)) || [],
-      commodities: data.market_data.commodities?.filter((commodity) => WANTED_COMMODITIES.includes(commodity.name)) || [],
-      exchange_rates: data.market_data.exchange_rates?.filter((rate) => WANTED_EXCHANGE_RATES.includes(rate.name)) || [],
-      cryptocurrency: data.market_data.cryptocurrency?.filter((crypto) => WANTED_CRYPTO.includes(crypto.name)) || [],
-      treasury_yields: data.market_data.treasury_yields?.filter((treasury) => WANTED_TREASURY.includes(treasury.name)) || [],
+      indices: data.usa.indices?.filter((index) => WANTED_INDICES.includes(index.name)) || [],
+      commodities: data.usa.commodities?.filter((commodity) => WANTED_COMMODITIES.includes(commodity.name)) || [],
+      exchange_rates: data.usa.exchange_rates?.filter((rate) => WANTED_EXCHANGE_RATES.includes(rate.name)) || [],
+      cryptocurrency: data.crypto.prices?.filter((crypto) => WANTED_CRYPTO.includes(crypto.name)) || [],
+      treasury_yields: data.usa.treasury_yields?.filter((treasury) => WANTED_TREASURY.includes(treasury.name)) || [],
       economic_calendar: {},
+      news: data.usa.news || [],
     };
 
-    const calendar = data.market_data.economic_calendar || {};
+    // 경제 캘린더 처리
+    const calendar = data.usa.economic_calendar || {};
     for (const date in calendar) {
       if (calendar[date]?.['United States']) {
         const eventsWithCountry = calendar[date]['United States']
-          .filter(event => event.importance >= 2)
-          .map(event => {
-            const flagPath = countryMap['United States'].flag;
-            const flagContent = fs.readFileSync(flagPath, 'utf8');
-            return {
-              ...event,
-              country: {
-                ...countryMap['United States'],
-                flag: `data:image/svg+xml;base64,${Buffer.from(flagContent).toString('base64')}`
-              }
-            };
-          }).sort((a, b) => new Date(a.date) - new Date(b.date));
+          .filter(event => event.importance >= 1)
+          .map(event => ({
+            ...event,
+            country: {
+              ...countryMap['United States'],
+              flag: `data:image/svg+xml;base64,${Buffer.from(fs.readFileSync(countryMap['United States'].flag, 'utf8')).toString('base64')}`
+            }
+          }))
+          .sort((a, b) => new Date(a.date) - new Date(b.date));
 
-        filteredData.economic_calendar[date] = {
-          'United States': eventsWithCountry
-        };
+        filteredData.economic_calendar[date] = eventsWithCountry;
       }
     }
+
     return filteredData;
   } catch (error) {
     console.error('데이터 조회 중 오류 발생:', error);
@@ -156,8 +166,8 @@ export async function generateHTML() {
     const data = {
       ...marketData,
       ...dates,
-      yesterday_calendar: marketData.economic_calendar[dates.previousDateString]?.['United States'] || [],
-      today_calendar: marketData.economic_calendar[dates.todayDateString]?.['United States'] || [],
+      yesterday_calendar: marketData.economic_calendar[dates.previousDateString] || [],
+      today_calendar: marketData.economic_calendar[dates.todayDateString] || [],
     };
 
     const template = fs.readFileSync(join(__dirname, 'template', 'template.html'), 'utf-8');
@@ -174,8 +184,28 @@ export async function generateHTML() {
     };
 
     const inlinedHTML = juice(htmlContent, options);
+    
+    // 파일명 변경
+    const outputFileName = 'usa_output.html';
+    const localFilePath = join(__dirname, 'output', outputFileName);
+    
+    // 로컬에 파일 저장
+    fs.writeFileSync(localFilePath, inlinedHTML);
 
-    fs.writeFileSync(join(__dirname, 'output', 'output.html'), inlinedHTML);
+    // S3에 업로드
+    const dateStr = now.toISOString().split('T')[0].replace(/-/g, '');
+    const s3Key = `output/${dateStr}/${outputFileName}`;
+
+    const putCommand = new PutObjectCommand({
+      Bucket: process.env.S3_BUCKET_NAME,
+      Key: s3Key,
+      Body: inlinedHTML,
+      ContentType: 'text/html',
+    });
+
+    await s3Client.send(putCommand);
+    console.log(`HTML 파일이 S3에 업로드되었습니다: ${s3Key}`);
+
   } catch (error) {
     console.error('HTML 생성 중 오류 발생:', error);
     throw error;

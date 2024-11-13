@@ -22,6 +22,23 @@
 
                     <tr>
                         <td class="section-style">
+                            <h2>주요 뉴스</h2>
+                            <table class="news-table">
+                                <tbody>
+                                    {{#each news}}
+                                    <tr>
+                                        <td class="news-item">
+                                            {{this}}
+                                        </td>
+                                    </tr>
+                                    {{/each}}
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="section-style">
                             <h2>미국 증시</h2>
                             <table class="card-table">
                                 <tbody>
@@ -178,7 +195,7 @@
 
                     <tr>
                         <td class="section-style">
-                            <h2>가상화폐</h2>
+                            <h2>암호화폐</h2>
                             <table class="card-table">
                                 <tbody>
                                     {{#each cryptocurrency}}

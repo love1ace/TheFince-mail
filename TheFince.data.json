@@ -1,0 +1,269 @@
+[{
+  "_id": "2024-11-12",
+  "crypto": {
+    "prices": [
+      {
+        "name": "BTC",
+        "current_price": 89758.01,
+        "change_amount": 8648.91,
+        "change_percent": 10.66,
+        "date": "2024-11-12T07:19:05.126Z"
+      },
+      {
+        "name": "ETH",
+        "current_price": 3382.42,
+        "change_amount": 242.26,
+        "change_percent": 7.71,
+        "date": "2024-11-12T07:19:05.126Z"
+      },
+      {
+        "name": "SOL",
+        "current_price": 220.13,
+        "change_amount": 12.12,
+        "change_percent": 5.83,
+        "date": "2024-11-12T07:19:05.126Z"
+      },
+      {
+        "name": "XRP",
+        "current_price": 0.6141,
+        "change_amount": 0.04,
+        "change_percent": 6.37,
+        "date": "2024-11-12T07:19:05.126Z"
+      },
+      {
+        "name": "TRX",
+        "current_price": 0.1684,
+        "change_amount": 0,
+        "change_percent": 2.43,
+        "date": "2024-11-12T07:19:05.126Z"
+      }
+    ]
+  },
+  "stocks": {
+    "tesla": {
+      "price": {
+        "name": "TSLA",
+        "current_price": 350,
+        "change_amount": 28.78,
+        "change_percent": 8.96,
+        "date": "2024-11-12T07:19:05.250Z",
+        "status": "success"
+      },
+      "news": [
+        "테슬라, 사이버트럭 임대 프로그램 도입하여 수요 증가 기대",
+        "테슬라, 새로운 명령 기능 도입으로 차량 연결성 향상",
+        "일론 머스크, 도널드 트럼프와의 긴밀한 관계로 주가 상승",
+        "Wedbush, 테슬라의 목표 주가를 400달러로 상향 조정",
+        "테슬라 주식, 트럼프 재선 이후 40% 급등",
+        "테슬라, 자율주행과 AI 발전에 유리한 규제 환경 기대"
+      ],
+      "market_cap": {
+        "value": 1123521000000,
+        "date": "2024-11-11"
+      }
+    }
+  },
+  "usa": {
+    "indices": [
+      {
+        "name": "S&P 500",
+        "current_price": 6001.35,
+        "change_amount": 5.81,
+        "change_percent": 0.1,
+        "date": "2024-11-12T07:19:05.243Z",
+        "status": "success"
+      },
+      {
+        "name": "DJI",
+        "current_price": 44293.13,
+        "change_amount": 304.14,
+        "change_percent": 0.69,
+        "date": "2024-11-12T07:19:05.243Z",
+        "status": "success"
+      },
+      {
+        "name": "NDX",
+        "current_price": 21106.59,
+        "change_amount": -10.59,
+        "change_percent": -0.05,
+        "date": "2024-11-12T07:19:05.243Z",
+        "status": "success"
+      },
+      {
+        "name": "RUT",
+        "current_price": 2434.98,
+        "change_amount": 35.34,
+        "change_percent": 1.47,
+        "date": "2024-11-12T07:19:05.254Z",
+        "status": "success"
+      },
+      {
+        "name": "SOX",
+        "current_price": 5156.39,
+        "change_amount": -134.13,
+        "change_percent": -2.54,
+        "date": "2024-11-12T07:19:05.249Z",
+        "status": "success"
+      },
+      {
+        "name": "DXY",
+        "current_price": 105.7,
+        "change_amount": 0.15,
+        "change_percent": 0.15,
+        "date": "2024-11-12T07:19:05.249Z",
+        "status": "success"
+      }
+    ],
+    "commodities": [
+      {
+        "name": "Gold",
+        "current_price": 2613.1,
+        "change_amount": -4.6,
+        "change_percent": -0.18,
+        "date": "2024-11-12T07:19:05.450Z",
+        "status": "success"
+      },
+      {
+        "name": "Silver",
+        "current_price": 30.45,
+        "change_amount": -0.16,
+        "change_percent": -0.53,
+        "date": "2024-11-12T07:19:05.389Z",
+        "status": "success"
+      },
+      {
+        "name": "Copper",
+        "current_price": 4.18,
+        "change_amount": -0.04,
+        "change_percent": -1.05,
+        "date": "2024-11-12T07:19:05.450Z",
+        "status": "success"
+      },
+      {
+        "name": "WTI",
+        "current_price": 67.86,
+        "change_amount": -0.18,
+        "change_percent": -0.26,
+        "date": "2024-11-12T07:19:05.449Z",
+        "status": "success"
+      },
+      {
+        "name": "Brent",
+        "current_price": 71.67,
+        "change_amount": -0.16,
+        "change_percent": -0.22,
+        "date": "2024-11-12T07:19:05.450Z",
+        "status": "success"
+      },
+      {
+        "name": "NG",
+        "current_price": 2.95,
+        "change_amount": 0.03,
+        "change_percent": 0.92,
+        "date": "2024-11-12T07:19:05.451Z",
+        "status": "success"
+      }
+    ],
+    "exchange_rates": [
+      {
+        "name": "USD/KRW",
+        "current_price": 1398.9,
+        "change_amount": 10.66,
+        "change_percent": 0.77,
+        "date": "2024-11-11"
+      },
+      {
+        "name": "USD/EUR",
+        "current_price": 0.9389,
+        "change_amount": 0.0106,
+        "change_percent": 1.14,
+        "date": "2024-11-11"
+      },
+      {
+        "name": "USD/JPY",
+        "current_price": 153.81,
+        "change_amount": 1.4,
+        "change_percent": 0.92,
+        "date": "2024-11-11"
+      },
+      {
+        "name": "JPY/KRW",
+        "current_price": 9.095,
+        "change_amount": -0.0136,
+        "change_percent": -0.15,
+        "date": "2024-11-11"
+      }
+    ],
+    "treasury_yields": [
+      {
+        "name": "2-Year Treasury Yield",
+        "current_price": 4.26,
+        "change_amount": 0.05,
+        "change_percent": 1.19,
+        "date": "2024-11-11T07:19:15.334Z"
+      },
+      {
+        "name": "10-Year Treasury Yield",
+        "current_price": 4.3,
+        "change_amount": -0.01,
+        "change_percent": -0.23,
+        "date": "2024-11-11T07:19:15.335Z"
+      },
+      {
+        "name": "30-Year Treasury Yield",
+        "current_price": 4.47,
+        "change_amount": -0.05,
+        "change_percent": -1.11,
+        "date": "2024-11-11T07:19:15.335Z"
+      }
+    ],
+    "economic_calendar": {
+      "2024-11-12": {
+        "United States": [
+          {
+            "date": "2024-11-12 20:00:00.000",
+            "event": "NFIB 기업낙관지수 (10월)",
+            "time": " 20:00",
+            "actual": "",
+            "forecast": "91.9",
+            "previous": "91.5",
+            "importance": 1,
+            "country": "United States"
+          },
+          {
+            "date": "2024-11-12 22:55:00.000",
+            "event": "Redbook 지수(전년비) (11월 09일)",
+            "time": " 22:55",
+            "actual": "",
+            "forecast": "",
+            "previous": "6%",
+            "importance": 1,
+            "country": "United States"
+          }
+        ]
+      },
+      "2024-11-11": {
+        "United States": [
+          {
+            "date": "2024-11-11 09:00:00.000",
+            "event": "재향 군인의 날 ",
+            "time": " 09:00",
+            "actual": "",
+            "forecast": "",
+            "previous": "",
+            "importance": 1,
+            "country": "United States"
+          }
+        ]
+      }
+    },
+    "news": [
+      "비트코인, 사상 최초로 90,000 달러에 근접",
+      "다우존스, 44,000 돌파하며 마감",
+      "S&P 500, 사상 최고치에서 거래 마감 후 대체로 변동 없어",
+      "일론 머스크, 트럼프 당선 이후 700억 달러 증가",
+      "트럼프, 마르코 루비오 상원의원을 국무장관으로 지명할 것으로 예상",
+      "FTX, 바이낸스 및 전 CEO 조우에 대해 18억 달러 소송 접수"
+    ]
+  }
+}]

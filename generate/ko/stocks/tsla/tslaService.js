@@ -6,8 +6,9 @@ import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import { formatInTimeZone } from 'date-fns-tz';
-import { registerHelpers, registerMappingHelpers } from '../../../utils/handlebarHelpers.js';
-import { getFormattedDates } from '../../../utils/dateUtils.js';
+import { registerHelpers, registerMappingHelpers } from '../../../../utils/handlebarHelpers.js';
+import { getFormattedDates } from '../../../../utils/dateUtils.js';
+import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
 
 // ES 모듈에서 __dirname 설정
 const __filename = fileURLToPath(import.meta.url);
@@ -19,26 +20,18 @@ dotenv.config();
 // Handlebars 헬퍼 등록
 registerHelpers();
 
-// 이름 매핑 수정
+// 매핑 정의 수정
 const mappings = {
-  indexNameMap: {
-    'NQ100': '나스닥 100',
-    'HK40': '항셍지수',
-    'KOR200': '코스피 200',
-  },
-  commodityNameMap: {
-    'Gold': '금',
-    'WTI': 'WTI 원유',
-    'Brent': '브렌트유',
-    'NG': '천연가스',
-  },
   exchangeRateMap: {
     'USD/KRW': '달러/원',
   },
   cryptoNameMap: {
-    'BTC': '비트코인',
-    'ETH': '이더리움',
+    BTC: '비트코인',
+    ETH: '이더리움',
   },
+  stockNameMap: {
+    TSLA: '테슬라',
+  }
 };
 
 // 매핑 헬퍼 등록
@@ -55,24 +48,21 @@ const countryMap = {
     code: 'US',
     name: 'USA',
     flag: getImagePath('us.svg')
-  },
-  'China': {
-    code: 'CN',
-    name: 'CHN',
-    flag: getImagePath('cn.svg')
-  },
-  'South Korea': {
-    code: 'KR',
-    name: 'KOR',
-    flag: getImagePath('kr.svg')
   }
 };
 
-// 원하는 데이터 목록 수정
-const WANTED_INDICES = ['NQ100', 'HK40', 'KOR200'];
-const WANTED_COMMODITIES = ['Gold', 'WTI', 'Brent', 'NG'];
+// 원하는 데이터 목록 정의 수정
 const WANTED_EXCHANGE_RATES = ['USD/KRW'];
 const WANTED_CRYPTO = ['BTC', 'ETH'];
+
+// S3 클라이언트 설정
+const s3Client = new S3Client({
+  region: 'ap-northeast-2',
+  credentials: {
+    accessKeyId: process.env.S3_ACCESS_KEY_ID,
+    secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
+  },
+});
 
 // MongoDB 연결 및 데이터 가져오기 함수
 async function getMarketData() {
@@ -86,6 +76,8 @@ async function getMarketData() {
 
     const today = new Date();
     const timeZone = 'Asia/Seoul';
+    
+    // 주말 처리 로직 제거하고 현재 날짜 그대로 사용
     const dateString = formatInTimeZone(today, timeZone, 'yyyy-MM-dd');
 
     console.log('조회하려는 날짜:', dateString);
@@ -98,41 +90,12 @@ async function getMarketData() {
     }
 
     const filteredData = {
-      indices: data.market_data.indices?.filter((index) => WANTED_INDICES.includes(index.name)) || [],
-      commodities: data.market_data.commodities?.filter((commodity) => WANTED_COMMODITIES.includes(commodity.name)) || [],
-      exchange_rates: data.market_data.exchange_rates
-        ?.filter(rate => WANTED_EXCHANGE_RATES.includes(rate.name)) || [],
-      cryptocurrency: data.market_data.cryptocurrency?.filter((crypto) => WANTED_CRYPTO.includes(crypto.name)) || [],
-      economic_calendar: {},
+      tesla: data.stocks.tesla,
+      exchange_rates: data.usa.exchange_rates?.filter((rate) => WANTED_EXCHANGE_RATES.includes(rate.name)) || [],
+      cryptocurrency: data.crypto.prices?.filter((crypto) => WANTED_CRYPTO.includes(crypto.name)) || [],
+      news: data.usa.news || [],
     };
 
-    const calendar = data.market_data.economic_calendar || {};
-    for (const date in calendar) {
-      filteredData.economic_calendar[date] = {};
-      
-      ['United States', 'China', 'South Korea'].forEach(country => {
-        if (calendar[date]?.[country]) {
-          const eventsWithCountry = calendar[date][country]
-            .filter(event => event.importance >= 2)  // 중요도 2-3인 이벤트만 필터링
-            .map(event => {
-              const flagPath = countryMap[country].flag;
-              const flagContent = fs.readFileSync(flagPath, 'utf8');
-              return {
-                ...event,
-                country: {
-                  ...countryMap[country],
-                  flag: `data:image/svg+xml;base64,${Buffer.from(flagContent).toString('base64')}`
-                }
-              };
-            })
-            .sort((a, b) => new Date(a.date) - new Date(b.date));
-
-          if (eventsWithCountry.length > 0) {
-            filteredData.economic_calendar[date][country] = eventsWithCountry;
-          }
-        }
-      });
-    }
     return filteredData;
   } catch (error) {
     console.error('데이터 조회 중 오류 발생:', error);
@@ -162,12 +125,6 @@ export async function generateHTML() {
     const data = {
       ...marketData,
       ...dates,
-      yesterday_calendar: Object.values(marketData.economic_calendar[dates.previousDateString] || {})
-        .flat()
-        .sort((a, b) => new Date(a.date) - new Date(b.date)),
-      today_calendar: Object.values(marketData.economic_calendar[dates.todayDateString] || {})
-        .flat()
-        .sort((a, b) => new Date(a.date) - new Date(b.date)),
     };
 
     const template = fs.readFileSync(join(__dirname, 'template', 'template.html'), 'utf-8');
@@ -184,8 +141,28 @@ export async function generateHTML() {
     };
 
     const inlinedHTML = juice(htmlContent, options);
+    
+    // 파일명 변경
+    const outputFileName = 'tsla_output.html';
+    const localFilePath = join(__dirname, 'output', outputFileName);
+    
+    // 로컬에 파일 저장
+    fs.writeFileSync(localFilePath, inlinedHTML);
 
-    fs.writeFileSync(join(__dirname, 'output', 'output.html'), inlinedHTML);
+    // S3에 업로드
+    const dateStr = now.toISOString().split('T')[0].replace(/-/g, '');
+    const s3Key = `output/${dateStr}/${outputFileName}`;
+
+    const putCommand = new PutObjectCommand({
+      Bucket: process.env.S3_BUCKET_NAME,
+      Key: s3Key,
+      Body: inlinedHTML,
+      ContentType: 'text/html',
+    });
+
+    // await s3Client.send(putCommand);
+    // console.log(`HTML 파일이 S3에 업로드되었습니다: ${s3Key}`);
+
   } catch (error) {
     console.error('HTML 생성 중 오류 발생:', error);
     throw error;

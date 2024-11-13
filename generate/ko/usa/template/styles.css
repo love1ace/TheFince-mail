@@ -247,3 +247,22 @@ table {
     color: #666;
     margin-bottom: 10px;
 }
+
+.news-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+}
+
+.news-item {
+    color: #ffffff;
+    padding: 14px 0;
+    font-size: 16px;
+    line-height: 1.4;
+    margin-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.news-item:not(:last-child) {
+    margin-bottom: 8px;
+}

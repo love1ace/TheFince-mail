@@ -1,12 +1,8 @@
 import { formatInTimeZone } from 'date-fns-tz';
-import { subDays, isWeekend } from 'date-fns';
+import { subDays } from 'date-fns';
 
 export function getPreviousBusinessDay(date) {
-  let prevDay = subDays(new Date(date), 1);
-  while (isWeekend(prevDay)) {
-    prevDay = subDays(prevDay, 1);
-  }
-  return prevDay;
+  return subDays(new Date(date), 1);
 }
 
 export function getFormattedDates(now, timeZone = 'Asia/Seoul') {
