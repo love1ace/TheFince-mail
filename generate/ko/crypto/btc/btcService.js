@@ -10,52 +10,29 @@ import { registerHelpers, registerMappingHelpers } from '../../../../utils/handl
 import { getFormattedDates } from '../../../../utils/dateUtils.js';
 import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
 
-// ES 모듈에서 __dirname 설정
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-// .env 파일 로드
 dotenv.config();
 
-// Handlebars 헬퍼 등록
 registerHelpers();
 
-// 매핑 정의 수정
 const mappings = {
   exchangeRateMap: {
     'USD/KRW': '달러/원',
   },
   cryptoNameMap: {
     BTC: '비트코인',
-    DOGE: '도지코인',
   },
   stockNameMap: {
-    TSLA: '테슬라',
+    // 필요한 주식 매핑이 있다면 여기에 추가
   }
 };
 
-// 매핑 헬퍼 등록
 registerMappingHelpers(mappings);
 
-// __dirname을 사용하여 이미지의 절대 경로 생성
-const getImagePath = (imageName) => {
-  return join(__dirname, '../../../image/flags', imageName);
-};
-
-// 국가 매핑 수정
-const countryMap = {
-  'United States': {
-    code: 'US',
-    name: 'USA',
-    flag: getImagePath('us.svg')
-  }
-};
-
-// 원하는 데이터 목록 정의 수정
 const WANTED_EXCHANGE_RATES = ['USD/KRW'];
-const WANTED_CRYPTO = ['BTC', 'DOGE'];
 
-// S3 클라이언트 설정
 const s3Client = new S3Client({
   region: 'ap-northeast-2',
   credentials: {
@@ -64,7 +41,6 @@ const s3Client = new S3Client({
   },
 });
 
-// MongoDB 연결 및 데이터 가져오기 함수
 async function getMarketData() {
   const client = new MongoClient(process.env.MONGODB_URI);
   try {
@@ -77,7 +53,6 @@ async function getMarketData() {
     const today = new Date();
     const timeZone = 'Asia/Seoul';
     
-    // 주말 처리 로직 제거하고 현재 날짜 그대로 사용
     const dateString = formatInTimeZone(today, timeZone, 'yyyy-MM-dd');
 
     console.log('조회하려는 날짜:', dateString);
@@ -90,10 +65,12 @@ async function getMarketData() {
     }
 
     const filteredData = {
-      tesla: data.stocks.tesla,
+      bitcoin: {
+        price: data.crypto.prices.find(crypto => crypto.name === 'BTC'),
+        market_cap: data.crypto.btc.market_cap.value,
+      },
       exchange_rates: data.usa.exchange_rates?.filter((rate) => WANTED_EXCHANGE_RATES.includes(rate.name)) || [],
-      cryptocurrency: data.crypto.prices?.filter((crypto) => WANTED_CRYPTO.includes(crypto.name)) || [],
-      news: data.usa.news || [],
+      news: data.crypto.btc.news || [],
     };
 
     return filteredData;
@@ -105,7 +82,6 @@ async function getMarketData() {
   }
 }
 
-// generateHTML 함수를 export 하도록 수정
 export async function generateHTML() {
   try {
     const outputDir = join(__dirname, 'output');
@@ -142,14 +118,11 @@ export async function generateHTML() {
 
     const inlinedHTML = juice(htmlContent, options);
     
-    // 파일명 변경
-    const outputFileName = 'tsla_output.html';
+    const outputFileName = 'btc_output.html';
     const localFilePath = join(__dirname, 'output', outputFileName);
     
-    // 로컬에 파일 저장
     fs.writeFileSync(localFilePath, inlinedHTML);
 
-    // S3에 업로드
     const dateStr = now.toISOString().split('T')[0].replace(/-/g, '');
     const s3Key = `output/${dateStr}/${outputFileName}`;
 

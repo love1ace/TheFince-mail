@@ -2,6 +2,10 @@ import Handlebars from 'handlebars';
 
 export function registerHelpers() {
   Handlebars.registerHelper({
+    eq(v1, v2) {
+      return v1 === v2;
+    },
+    
     formatNumber(number) {
       if (number == null) return '';
       if (Math.abs(number) < 1000) {
@@ -60,6 +64,8 @@ Handlebars.registerHelper('formatLargeNumber', function(value) {
         return (value / 1e9).toFixed(2) + 'B';
     } else if (value >= 1e6) {
         return (value / 1e6).toFixed(2) + 'M';
+    } else if (value >= 1e3) {
+        return (value / 1e3).toFixed(2) + 'K';
     }
     return value.toLocaleString();
 }); 

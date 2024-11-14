@@ -22,10 +22,10 @@
 
                     <tr>
                         <td class="section-style">
-                            <h2>테슬라 뉴스</h2>
+                            <h2>주요 뉴스</h2>
                             <table class="news-table">
                                 <tbody>
-                                    {{#each tesla.news}}
+                                    {{#each news}}
                                     <tr>
                                         <td class="news-item">
                                             {{this}}
@@ -39,7 +39,7 @@
 
                     <tr>
                         <td class="section-style">
-                            <h2>주가 정보</h2>
+                            <h2>현재 가격</h2>
                             <table class="card-table">
                                 <tbody>
                                     <tr>
@@ -47,20 +47,20 @@
                                             <table class="card-inner">
                                                 <tr>
                                                     <td class="left-side">
-                                                        <p class="main-name">{{stockNameMap tesla.price.name}}</p>
-                                                        <p class="sub-name">{{tesla.price.name}}</p>
+                                                        <p class="main-name">{{cryptoNameMap bitcoin.price.name}}</p>
+                                                        <p class="sub-name">{{bitcoin.price.name}}</p>
                                                     </td>
                                                     <td class="right-side">
                                                         <p class="price">
-                                                            <span>$</span>{{formatNumber tesla.price.current_price}}
+                                                            <span>$</span>{{formatNumber bitcoin.price.current_price}}
                                                         </p>
                                                         <table class="changes-table">
                                                             <tr>
-                                                                <td class="change-value {{getChangeClass tesla.price.change_percent}}">
-                                                                    {{formatChange tesla.price.change_amount}}
+                                                                <td class="change-value {{getChangeClass bitcoin.price.change_percent}}">
+                                                                    {{formatChange bitcoin.price.change_amount}}
                                                                 </td>
-                                                                <td class="change-value {{getChangeClass tesla.price.change_percent}}">
-                                                                    {{formatChangePercent tesla.price.change_percent}}
+                                                                <td class="change-value {{getChangeClass bitcoin.price.change_percent}}">
+                                                                    {{formatChangePercent bitcoin.price.change_percent}}
                                                                 </td>
                                                             </tr>
                                                         </table>
@@ -79,12 +79,12 @@
                                                     </td>
                                                     <td class="right-side">
                                                         <p class="price">
-                                                            <span>$</span>{{formatLargeNumber tesla.market_cap.value}}
+                                                            <span>$</span>{{formatLargeNumber bitcoin.market_cap}}
                                                         </p>
                                                         <table class="changes-table">
                                                             <tr>
-                                                                <td class="change-value {{getChangeClass tesla.price.change_percent}}">
-                                                                    {{formatChangePercent tesla.price.change_percent}}
+                                                                <td class="change-value {{getChangeClass bitcoin.price.change_percent}}">
+                                                                    {{formatChangePercent bitcoin.price.change_percent}}
                                                                 </td>
                                                             </tr>
                                                         </table>
@@ -133,50 +133,6 @@
                                     </tr>
                                     {{/each}}
                                 </tbody>
-                            </table>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td class="section-style">
-                            <h2>암호화폐</h2>
-                            <table class="card-table">
-                                <tbody>
-                                    {{#each cryptocurrency}}
-                                    <tr>
-                                        <td class="card-cell">
-                                            <table class="card-inner">
-                                                <tr>
-                                                    <td class="left-side">
-                                                        <p class="main-name">{{cryptoNameMap name}}</p>
-                                                        <p class="sub-name">{{name}}</p>
-                                                    </td>
-                                                    <td class="right-side">
-                                                        <p class="price">
-                                                            <span>$</span>{{formatNumber current_price}}
-                                                        </p>
-                                                        <table class="changes-table">
-                                                            <tr>
-                                                                <td class="change-value {{getChangeClass change_percent}}">
-                                                                    {{formatChange change_amount}}
-                                                                </td>
-                                                                <td class="change-value {{getChangeClass change_percent}}">
-                                                                    {{formatChangePercent change_percent}}
-                                                                </td>
-                                                            </tr>
-                                                        </table>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                    </tr>
-                                    {{/each}}
-                                </tbody>
-                                <tr>
-                                    <td class="footer-style">
-                                        <p class="footer-copyright">© 2024 TheFince.com. All rights reserved.</p>
-                                    </td>
-                                </tr>
                             </table>
                         </td>
                     </tr>
