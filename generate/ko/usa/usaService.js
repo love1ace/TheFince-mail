@@ -26,7 +26,6 @@ const mappings = {
     'S&P 500': 'S&P 500',
     DJI: '다우존스 산업평균지수',
     NDX: '나스닥 100',
-    RUT: '러셀 2000',
     SOX: '필라델피아 반도체 지수',
     DXY: '달러 인덱스',
   },
@@ -68,7 +67,7 @@ const countryMap = {
 };
 
 // 원하는 데이터 목록 정의
-const WANTED_INDICES = ['S&P 500', 'DJI', 'NDX', 'RUT', 'SOX', 'DXY'];
+const WANTED_INDICES = ['S&P 500', 'DJI', 'NDX', 'SOX', 'DXY'];
 const WANTED_COMMODITIES = ['Gold', 'WTI', 'Brent', 'NG'];
 const WANTED_EXCHANGE_RATES = ['USD/KRW'];
 const WANTED_CRYPTO = ['BTC', 'ETH'];
